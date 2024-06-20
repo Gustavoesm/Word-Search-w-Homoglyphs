@@ -14,9 +14,9 @@ Foi utilizado a linguagem Java 8 para desenvolver a implementação geral do pro
 
 ## Passo a passo de implementação
 
-1. Implementação do mecanismo de webscraping, utilizado para escanear páginas HTTP à serem analisadas pela aplicação. ([impl.HTMLPageReader](src/main/java/HTMLPageReader.java) e [impl.SafetyCheck](src/main/java/SafetyCheck.java))
-2. Definir mapeamento estático de letras para homóglifos. ([impl.Homoglyphs](src/main/java/Homoglyphs.java))
-3. Definir e implementar estratégia de comparação de letras com homóglifos. ([impl.StringComparator](src/main/java/StringComparator.java) e [HomoglyphsWordMatcher](src/main/java/matchers/HomoglyphWordMatcher.java))
+1. Implementação do mecanismo de webscraping, utilizado para escanear páginas HTTP à serem analisadas pela aplicação. ([HTMLPageReader](src/main/java/HTMLPageReader.java) e [SafetyCheck](src/main/java/SafetyCheck.java))
+2. Definir mapeamento estático de letras para homóglifos. ([Homoglyphs](src/main/java/Homoglyphs.java))
+3. Definir e implementar estratégia de comparação de letras com homóglifos. ([StringComparator](src/main/java/StringComparator.java) e [HomoglyphsWordMatcher](src/main/java/matchers/HomoglyphWordMatcher.java))
 4. Integrar as implementações e receber os parâmetros de busca por args. ([Application](src/main/java/Application.java))
 
 ## Instalação
