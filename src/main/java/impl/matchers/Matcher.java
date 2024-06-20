@@ -1,4 +1,4 @@
-package application.src.impl.matchers;
+package impl.matchers;
 
 public interface Matcher {
     boolean matches(String text);

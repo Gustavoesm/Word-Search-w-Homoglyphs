@@ -1,8 +1,8 @@
-package application.src.impl;
+package impl;
 
 import java.util.Map;
 
-import static application.src.impl.Homoglyphs.getHomoglyphsMap;
+import static impl.Homoglyphs.getHomoglyphsMap;
 import static java.lang.Character.toUpperCase;
 
 public class StringComparator {

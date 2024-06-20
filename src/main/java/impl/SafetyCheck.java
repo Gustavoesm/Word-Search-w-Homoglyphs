@@ -1,13 +1,14 @@
-package application.src.impl;
+package impl;
 
-import application.src.impl.exceptions.PageReadingException;
-import application.src.impl.matchers.Matcher;
+
+import impl.exceptions.PageReadingException;
+import impl.matchers.Matcher;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.URL;
 
-import static application.src.impl.HTMLPageReader.readPage;
+import static impl.HTMLPageReader.readPage;
 
 public class SafetyCheck {
 

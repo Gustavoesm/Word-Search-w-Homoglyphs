@@ -1,12 +1,12 @@
-package application.src.impl;
+package impl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The sources of the Homoglyphs and Leet Slang character list could be found at:
+ * The sources of the impl.Homoglyphs and Leet Slang character list could be found at:
  * <p>
- * Homoglyphs List: <a href="http://github.com/codebox/homoglyph">reference</a>
+ * impl.Homoglyphs List: <a href="http://github.com/codebox/homoglyph">reference</a>
  * Leet Slang: 	<a href="https://slangit.com/leet_sheet">reference</a>
  * <p>
  * Notice that only the raw data is present in this project, there is no Code Copyright Violation in any of this package files.

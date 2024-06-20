@@ -1,100 +1,58 @@
-Este Readme é um modelo que pode ser usado para os repositórios no GitHub de projetos feitos para a atividade de Extensão Hackerspace, da Universidade Federal de São Carlos - Campus Sorocaba, organizada pelo hackerspace [HackoonSpace](https://hackoonspace.com/). É importante observar que alguns campos e informações são opcionais, e que não é necessário seguir rigorosametne o modelo proposto. O objetivo é que, obrigatóriamente, os grupos coloquem em seus repositórios as informações requisitadas aqui, porém o formato em si pode ou não seguir o modelo.
+# Webscraping Word Searcher w/ Homoglyphs - Adaptado para HackoonSpace
 
-Além disso, para cada tópico, existem alguns possíveis exemplos de como o grupo pode apresentar as informações sobre o projeto (ex: lista enumerada, texto descritivo, etc). Alguns tópicos possuem comandos que só podem ser melhor visualizados na versão Raw ou txt do Readme.
+## Adaptação ao HackoonSpace
 
-É preferível que a linguagem da documentação esteja em português, mas também é aceito que esteja em inglês.
-
-Para responder quaisquer dúvidas, entrar em contato com a equipe do HackoonSpace.
-
-# Word Searcher w/ Homoglyphs - Adaptado para HackoonSpace
+O projeto desenvolvido aqui é uma adaptação para o HackoonSpace, de um projeto desenvolvido para atender a um programa de seletiva de estágio na área de segurança da informação, originalmente desenvolvido em 2021.
 
 ## Conceito do projeto
 
-Aqui vocês definem o conceito do projeto, explicando sucintamente sobre o que ele se trata, qual a finalidade/utilidade, etc. 1-2 parágrafos já são suficientes, desde que bem explicados, mas sintam-se a vontade para escrever mais. Também sintam-se a vontade para usar a criatividade.
-
-### Exemplo:
-
-Este projeto foi desenvolvido com o intuíto de facilitar a manuntenção de aplicações Web contra invasões indesejadas do tipo XYZ. Para isto, foi implementado um programa que realizasse a checagem de pacotes recebidos por um Website com host local em uma máquina com Windows, buscando traços de possíveis códigos maliciosos que possam interferir na execução habitual do servidor da aplicação.
+Este projeto foi desenvolvido para detectar palavras semelhantes a partir de homóglifos, que são caracteres visualmente semelhantes a outros, mas com representações diferentes. A finalidade é utilizar essa detecção para identificar tentativas de contornar filtros de palavras-chave através do uso de homoglifos.
 
 ## Pré-requisitos e recursos utilizados
 
-Citação das linguagens, bibliotecas, peças de hardware, e outras coisas que o grupo utilizou para realizar o projeto. Não é necessário explicar qual foi o uso exato de cada coisa no projeto. Bibliotecas e recursos padrões das tecnologias utilizadas não precisam ser citados (ex: stdio.h, iostream.h, etc.).
+Foi utilizado a linguagem Java 8 para desenvolver a implementação geral do projeto, além de utilizar-se [outro projeto](https://github.com/codebox/homoglyph), inacabado na época (2021), de base para definir quais seriam os homóglifos base:
 
-Se alguma biblioteca externa ou código de outra pessoa foi utilizado como recurso, é importante citar a fonte de onde vocês retiraram (pode ser o link no Github, ou tutorial usado como referência).
+## Passo a passo de implementação
 
-### Exemplo:
-
-O grupo utilizou a linguagem C para desenvolver a implementação geral do projeto, além de importar as seguintes bibliotecas:
-
-1. abcdzd.h
-2. exemplo.h, disponível em [IstoEhApenasUmExemplo](https://github.com/istoehapenasumexemplo/minhabiblioteca)
-
-Também foi utilizado o tutorial disponível em [IstoEhOutroExemplo](https://github.com/istoehoutroexemplo/oi) como base para o grupo compreender a implementação da função X dentro da linguagem em questão.
-
-## Passo a passo
-
-Passos que o grupo realizou para criar, implementar ou projetar o projeto. É importante descrever pelo menos o mais importante para que outras pessoas compreendam como o grupo conseguiu realizar o projeto, quais as atividades feitas, etc, e possam ter meios compreender como reproduzir o projeto, se assim fosse necessário.
-
-Se possível, é legal citar o nome dos arquivos implementados, se forem poucos. Por exemplo, se o seu projeto tiver 4 arquivos, cada um com uma função, citar o nome deles na parte do passo a passo correspondente. Se forem muitos arquivos para uma mesma coisa, não tem problema, podem deixar sem ou deixar apenas o nome da pasta.
-
-### Exemplo:
-
-1. Baixamos o material disponível em [Material](https://materialdeexemplodohackerspace.com.br)
-2. Estudamos como o código do material anterior funciona
-3. Implementamos um programa que se comunicasse com o código compreendido (comunicacao.c e comunicacao.h)
-4. Implementamos uma interface gráfica para utilizar o programa de comunicação de forma mais intuitiva.
+1. Implementação do mecanismo de webscraping, utilizado para escanear páginas HTTP à serem analisadas pela aplicação. ([impl.HTMLPageReader](src/main/java/HTMLPageReader.java) e [impl.SafetyCheck](src/main/java/SafetyCheck.java))
+2. Definir mapeamento estático de letras para homóglifos. ([impl.Homoglyphs](src/main/java/Homoglyphs.java))
+3. Definir e implementar estratégia de comparação de letras com homóglifos. ([impl.StringComparator](src/main/java/StringComparator.java) e [HomoglyphsWordMatcher](src/main/java/matchers/HomoglyphWordMatcher.java))
+4. Integrar as implementações e receber os parâmetros de busca por args. ([Application](src/main/java/Application.java))
 
 ## Instalação
 
-Passos necessários para instalar ou recriar seu projeto, se assim for necessário. A descrição dos passos não precisa ser complexa. É necessário apenas o mais importante para que outras pessoas saibam como fazê-lo.
+Para compilar e rodar localmente o programa, é recomendado utilizar o Maven como compilador do projeto, caso não sej habitiado com a ferramenta, é possivel aprender um pouco mais [aqui](https://maven.apache.org/guides/getting-started/index.html).
 
-### Exemplos:
+Para compilar o projeto, utilize o comando `mvn install` no diretório raiz do projeto (o mesmo diretório onde se encontra o arquivo [pom.xml](./pom.xml)).
 
-a)
-
-```
-Execute o comando X Y Z, no terminal, na pasta do projeto
-```
-
-b)
-
-1. Abra a pasta
-2. Execute o comando A B C no terminal
-3. Compile os arquivos X, Y e Z juntos
-4. Crie um arquivo W.txt de entrada
+OBS: É recomendado uma versão Java 8 ou superior para executar o projeto.
 
 ## Execução
 
-Passos necessários para executar, rodar ou testar seu projeto. Vocês podem seguir o mesmo modelo dos exemplos de Instalação.
+Para executar o programa, basta executar o arquivo JAR no diretório `target` gerado pela execução do maven com os argumentos necessários.
+
+### Exemplo
+
+`java -classpath ./target/Word-Search-w-Homoglyphs-1.0-SNAPSHOT.jar Application <URL> <blacklist>`
+
+sendo:
+
+- `java` - O comando padrão para executar arquivos JAR gerados pelo compilador Java.
+- `-classpath` - Uma flag que indica que passaremos o arquivo JAR que contém nossa classe executável.
+- `./target/Word-Search-w-Homoglyphs-1.0-SNAPSHOT.jar` - O caminho padrão do executável do programa gerado pelo maven.
+- `Application` - Nome da nossa classe executável (Main).
+- `<URL>` - O primeiro argumento, em formato URL (ex: https://www.google.com/) da pagina onde deve se realizar a busca.
+- `<blacklist>` - Uma lista de palavras à serem buscadas, separadas por espaço.
+  - Obs: Utilize aspas `"palavra1 palavra2"` para buscar por frases literais ao invés de palavras individuais.
 
 ## Bugs/problemas conhecidos
 
-Lista de possíveis problemas, bugs, falhas ou comportamentos esquisitos que o grupo conheça sobre o projeto. Esta seção é importante para que outras pessoas saibam quais tipos de erros elas podem encontrar. Seria legal citar motivos que o grupo acredita que sejam os causadores destas coisas, mas não é obrigatório.
+- Como o projeto se baseia em um mapa de letra <-> homóglifo para fazer a tradução nas buscas, o escopo de funcionamento do projeto fica delimitado à precisão e completude deste mapa para realização das buscas, logo, caracteres não inseridos no mapa não serão considerados para a busca.
 
-### Exemplo:
+  - Para acrescentar caracteres ao mapa de tradução, insira o caractere desejado ao final da string correspondente à letra referente ao caractere no [mapa de tradução](./src/main/java/impl/Homoglyphs.java).
 
-O projeto possui uma falha ao abrir a aba INICIO, após realizar uma inserção com caractéres acentuados. Também foi encontrada uma falha ao definir a tela de fundo com a cor Roxa, provavelmente por conta da palheta de cores limitada da tecnologia que foi utilizada.
+- A etapa de webscrapping analisa todo o documento HTML em busca das palavras-chave, incluindo tags HTML, cabeçalhos, scripts e respectivos parâmetros. Atualmente não há disponibilidade de buscar apenas no innerHTML/corpo do documento.
 
-## Autores
+## Autor
 
-Aqui, é importante referenciar o nome dos integrantes do grupo. Não precisa de RA. Outras informações, como contato ou perfil no Github, ficam a critério do grupo. Se o grupo for muito grande, é bom referenciar as funções de cada um.
-
-### Exemplo:
-
-- Marcus Vinícius N. Garcia ([Infinitemarcus](https://github.com/Infinitemarcus))
-- Garcia Neto Junior da Silva
-- João das Neves - Desenvolvedor do Back-End
-
-## Demais anotações e referências (opcional)
-
-Aqui, o grupo pode colocar quaisquer outras informações que ache relevante, se assim desejar. Links de referências e materiais de estudo utilizados ou recomendados são sempre bem vindos.
-
-## Imagens/screenshots
-
-É necessário colocar pelo menos 3 imagens/screenshots do projeto, porém fiquem a vontade para colocar mais, a medida do que vocês acharem legal para ilustrar o projeto.
-
-Para colocar imagens no Readme do Github, vocês podem usar o seguinte comando (abrir este Readme no modo raw ou como txt):
-
-![Imagem](https://github.com/hackoonspace/Hackoonspace-template/blob/master/exemplo.png)
-
-É preferível que vocês usem imagens hospedadas no próprio GitHub do projeto. É só referenciar o link delas no comando acima.
+- Gustavo Eugênio ([Gustavoesm](https://github.com/Gustavoesm)) - Backend Engineer

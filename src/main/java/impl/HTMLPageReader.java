@@ -1,6 +1,7 @@
-package application.src.impl;
+package impl;
 
-import application.src.impl.exceptions.PageReadingException;
+
+import impl.exceptions.PageReadingException;
 
 import java.io.BufferedReader;
 import java.io.IOException;

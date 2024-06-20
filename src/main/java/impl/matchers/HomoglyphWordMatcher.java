@@ -1,10 +1,8 @@
-package application.src.impl.matchers;
-
-import application.src.impl.StringComparator;
+package impl.matchers;
 
 import java.util.Collection;
 
-import static application.src.impl.StringComparator.compareWithHomoglyphs;
+import static impl.StringComparator.compareWithHomoglyphs;
 
 public class HomoglyphWordMatcher implements Matcher {
 
