@@ -45,6 +45,8 @@ sendo:
 - `<blacklist>` - Uma lista de palavras à serem buscadas, separadas por espaço.
   - Obs: Utilize aspas `"palavra1 palavra2"` para buscar por frases literais ao invés de palavras individuais.
 
+![Imagem de exemplo](proof.png "Exemplo")
+
 ## Bugs/problemas conhecidos
 
 - Como o projeto se baseia em um mapa de letra <-> homóglifo para fazer a tradução nas buscas, o escopo de funcionamento do projeto fica delimitado à precisão e completude deste mapa para realização das buscas, logo, caracteres não inseridos no mapa não serão considerados para a busca.
