@@ -45,7 +45,12 @@ sendo:
 - `<blacklist>` - Uma lista de palavras à serem buscadas, separadas por espaço.
   - Obs: Utilize aspas `"palavra1 palavra2"` para buscar por frases literais ao invés de palavras individuais.
 
-![Imagem de exemplo](proof.png "Exemplo")
+![Imagem de exemplo 1](proof.png "Exemplo 1")
+
+![Imagem de exemplo 2](proof2.png "Exemplo 2")
+
+![Imagem de exemplo 3](proof3.png "Exemplo 3")
+
 
 ## Bugs/problemas conhecidos
 
